@@ -26,6 +26,23 @@ class NewsGateway
         return $tableNews;
     }
 
+    public function findAtPage($page){
+        global $nbParPage;
+        $query='SELECT * FROM NEWS ORDER BY DESC LIMIT :decal , :nbParPage ;';
+        $this->con->executeQuery($query, array(
+            ':decal' => array(($page-1)*$nbParPage, PDO::PARAM_INT),
+            ':nbParPage' => array($nbParPage, PDO::PARAM_INT)
+            )
+        );
+        $results=$this->con->getResults();
+        $tableNews=[];
+        foreach($results as $row){
+            $tableNews[]=new News($row['URL'], $row['TITLE'], $row['DESCRIPTION'],$row['DATE']);
+        }
+        return $tableNews;
+
+    }
+
     public function findByAddress($address): News{
         $query='SELECT * FROM NEWS WHERE URL=:address';
         $this->con->executeQuery($query, array(

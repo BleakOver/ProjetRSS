@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 //gen
 $rep=__DIR__.'/../';
@@ -12,8 +12,13 @@ $rep=__DIR__.'/../';
 //BD
 
 $base="sasa";
-$login="";
-$mdp="";
+$login="enmora";
+$mdp="enmora";
+
+
+//Articles
+
+$nbParPage=10;
 
 //Vues
 
