@@ -20,11 +20,8 @@ class UserControl {
 
 				//pas d'action, on affiche les news
 				case NULL:
-					$page=$_REQUEST['page'];
-					if(!isset($page) || $page<=0){
-						$page=1;
-					}
-                    $this->Articles($page);
+
+                    $this->Articles();
 					break;
 
 				case "validationFormulaire":
@@ -58,32 +55,14 @@ class UserControl {
 	}//fin constructeur
 
 
-	function Articles($page){
+	function Articles(){
 	    global $rep, $vues, $base, $login, $mdp;
-
-		$news=new NewsGateway(new Connection($base, $login, $mdp));
-		$tabNews=$news->findAtPage($page);
+        $page=$_REQUEST['page'];
+        if(!isset($page) || $page<=0){
+            $page=1;
+        }
+        $tabNews=Model::getNewsAtPage($page);
 		require ($rep.$vues['userView']);
-	}
-
-	function ValidationFormulaire(array $dVueEreur) {
-		global $rep,$vues;
-
-
-		//si exception, ca remonte !!!
-		$nom=$_POST['txtNom']; // txtNom = nom du champ texte dans le formulaire
-		$age=$_POST['txtAge'];
-		Validation::val_form($nom,$age,$dVueEreur);
-
-		$model = new Simplemodel();
-		$data=$model->get_data();
-
-		$dVue = array (
-			'nom' => $nom,
-			'age' => $age,
-				'data' => $data,
-			);
-			require ($rep.$vues['vuephp1']);
 	}
 
 }//fin class

@@ -7,7 +7,7 @@
 <?php
     if(isset($tabNews)) {
         foreach ($tabNews as $new) {
-            echo '<p><a href="index.php">' . $new->getAddress() . '</a>' . $new->getTitle() . '</p></br>';
+            echo '<div><h2>' . $new->getTitle() . '</h2><p>' . $new->getDescription() . '</p><a href="index.php">' . $new->getAddress() . '</a></div></br>';
         }
     }
 ?>

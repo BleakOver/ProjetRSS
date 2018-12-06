@@ -31,7 +31,7 @@ class AdminControl
                     break;
 
                 case "flux":
-                    $this->gestionFlux();
+                    $this->afficherFlux();
                     break;
 
 
@@ -40,11 +40,7 @@ class AdminControl
 					break;
 
                 case "delete":
-                    $urlFlux=$_GET['urlFlux'];
-					if(!isset($urlFlux)){
-						break;
-					}
-                    $this->deleteFlux($urlFlux);
+                    $this->deleteFlux();
                     break;
 
 				//mauvaise action
@@ -77,30 +73,30 @@ class AdminControl
     function ajouterFlux(){
         global $rep, $vues, $base, $login, $mdp;
         $urlAAJouter=$_POST['urlToAdd'];
-        if(!isset($urlAAJouter)){
-            header('Location: '.$rep.$vues['formAjout']);
+        if (!filter_var($urlAAJouter, FILTER_VALIDATE_URL)){
+            $dVueEreur[] = "mauvais URL";
+            require ($rep.$vues['erreur']);
+            return;
         }
-        $fluxG=new FluxGateway(new Connection($base, $login, $mdp));
-        $fluxG->insert($url);
-        $_REQUEST['action']="flux";
+        Model::addFlux($urlAAJouter);
+        $_GET['action']="flux";
         new AdminControl();
     }
 
-    function deleteFlux($urlFlux){
+    function deleteFlux(){
         global $rep, $vues, $base, $login, $mdp;
-
-		$fluxG=new FluxGateway(new Connection($base, $login, $mdp));
-		$fluxG->delete($urlFlux);
-		//require ($rep."/index.php"); soit header (Location index.php);
-        $_REQUEST['action']="flux";
+        $urlFlux=$_GET['urlFlux'];
+        if(isset($urlFlux)){
+            Model::delFlux($urlFlux);
+        }
+        $_GET['action']="flux";
         new AdminControl();
     }
 
-    function gestionFlux(){
+    function afficherFlux(){
         global $rep, $vues, $base, $login, $mdp;
 
-		$fluxG=new FluxGateway(new Connection($base, $login, $mdp));
-		$tabFlux=$fluxG->findAll();
+		$tabFlux=Model::getFlux();
 		require ($rep.$vues['adminView']);
     }
 
@@ -119,9 +115,9 @@ class AdminControl
 		$dVue = array (
 			'nom' => $nom,
 			'age' => $age,
-				'data' => $data,
-			);
-			require ($rep.$vues['vuephp1']);
+            'data' => $data,
+        );
+		require ($rep.$vues['vuephp1']);
 	}
 
 }

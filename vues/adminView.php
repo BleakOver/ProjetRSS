@@ -12,7 +12,7 @@
         }
     }
 
-    echo '<p><input id="ajout" type="button" value="Ajouter"></p>';
+    require ($rep.$vues['formAjout']);
 
 ?>
 
@@ -24,11 +24,6 @@
                 window.location = `index.php?action=delete&urlFlux=${elem.previousSibling.innerHTML}`;
             }
         });
-    });
-
-    boutonAjout=document.querySelector("#ajout");
-    boutonAjout.addEventListener("click", function(){
-        window.location = 'index.php?action=ajout'
     });
 
 
