@@ -71,7 +71,7 @@ class AdminControl
     }
 
     function ajouterFlux(){
-        global $rep, $vues, $base, $login, $mdp;
+        global $rep, $vues;
         $urlAAJouter=$_POST['urlToAdd'];
         if (!filter_var($urlAAJouter, FILTER_VALIDATE_URL)){
             $dVueEreur[] = "mauvais URL";
@@ -84,7 +84,7 @@ class AdminControl
     }
 
     function deleteFlux(){
-        global $rep, $vues, $base, $login, $mdp;
+        global $rep, $vues;
         $urlFlux=$_GET['urlFlux'];
         if(isset($urlFlux)){
             Model::delFlux($urlFlux);
@@ -94,7 +94,7 @@ class AdminControl
     }
 
     function afficherFlux(){
-        global $rep, $vues, $base, $login, $mdp;
+        global $rep, $vues;
 
 		$tabFlux=Model::getFlux();
 		require ($rep.$vues['adminView']);

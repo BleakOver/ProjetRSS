@@ -5,6 +5,7 @@
 </head>
 <body>
 <?php
+    echo '<div><input id="retour" type="button" value="retourner aux news"></div>';
     if(isset($tabFlux)) {
         foreach ($tabFlux as $flux) {
             echo '<p><a href="index.php">' . $flux->getUrl() . '</a><input class="sup" type="button" value="Supprimer"></p></br>';
@@ -24,6 +25,11 @@
                 window.location = `index.php?action=delete&urlFlux=${elem.previousSibling.innerHTML}`;
             }
         });
+    });
+
+    boutonRetour=document.querySelector("#retour");
+    boutonRetour.addEventListener("click", function(){
+        window.location='index.php';
     });
 
 
