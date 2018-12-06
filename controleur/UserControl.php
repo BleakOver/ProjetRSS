@@ -21,11 +21,10 @@ class UserControl {
 				//pas d'action, on affiche les news
 				case NULL:
 					$page=$_REQUEST['page'];
-					if(isset($page)){
-						if($page<=0) $page=1;
+					if(!isset($page) || $page<=0){
+						$page=1;
 					}
-					else()
-					$this->Articles($page);
+                    $this->Articles($page);
 					break;
 
 				case "validationFormulaire":

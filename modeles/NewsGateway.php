@@ -28,7 +28,7 @@ class NewsGateway
 
     public function findAtPage($page){
         global $nbParPage;
-        $query='SELECT * FROM NEWS ORDER BY DESC LIMIT :decal , :nbParPage ;';
+        $query='SELECT * FROM NEWS ORDER BY DATE ASC LIMIT :decal , :nbParPage ;';
         $this->con->executeQuery($query, array(
             ':decal' => array(($page-1)*$nbParPage, PDO::PARAM_INT),
             ':nbParPage' => array($nbParPage, PDO::PARAM_INT)

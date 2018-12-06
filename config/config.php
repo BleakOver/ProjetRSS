@@ -11,7 +11,7 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$base="sasa";
+$base="mysql:host=berlin.iut.local;dbname=dbenmora";
 $login="enmora";
 $mdp="enmora";
 
@@ -25,6 +25,8 @@ $nbParPage=10;
 $vues['erreur']='vues/erreur.php';
 $vues['vuephp1']='vues/vuephp1.php';
 $vues['userView']='vues/userView.php';
+$vues['adminView']='vues/adminView.php';
+$vues['formAjout']='vues/formulaireAjout.html';
 
 
 ?>
