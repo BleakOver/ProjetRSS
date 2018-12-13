@@ -14,7 +14,7 @@ class UserControl {
 		$dVueEreur = array ();
 
 		try{
-			$action=$_REQUEST['action'];
+			$action=isset($_REQUEST['action']) ? $_REQUEST['action'] :NULL;
 
 			switch($action) {
 
@@ -57,7 +57,7 @@ class UserControl {
 
 	function Articles(){
 	    global $rep, $vues, $base, $login, $mdp;
-        $page=$_REQUEST['page'];
+        $page=isset($_REQUEST['page']) ? $_REQUEST['page'] :NULL;
         if(!isset($page) || $page<=0){
             $page=1;
         }

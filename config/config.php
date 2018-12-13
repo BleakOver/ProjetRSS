@@ -11,9 +11,9 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$base="mysql:host=berlin.iut.local;dbname=dbenmora";
-$login="enmora";
-$mdp="enmora";
+$base="mysql:host=localhost;dbname=dbenmora";
+$login="root";
+$mdp="";
 
 
 //Articles

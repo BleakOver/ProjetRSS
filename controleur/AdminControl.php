@@ -13,7 +13,7 @@ class AdminControl
     {
         global $rep,$vues; // nécessaire pour utiliser variables globales
 		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-		session_start();
+		session_start(); // plus tard dans le front
 
 
 		//debut
@@ -22,7 +22,7 @@ class AdminControl
 		$dVueEreur = array ();
 
 		try{
-			$action=$_GET['action'];
+            $action=isset($_REQUEST['action']) ? $_REQUEST['action'] :NULL;
 
 			switch($action) {
 
