@@ -19,11 +19,7 @@ class Model
         global $base, $login, $mdp;
 
         $fluxG=new FluxGateway(new Connection($base, $login, $mdp));
-        try {
-            $fluxG->insert(new Flux($url));
-        }
-        catch (PDOException $e){
-        }
+        $fluxG->insert(new Flux($url));
     }
 
     public static function delFlux($url){

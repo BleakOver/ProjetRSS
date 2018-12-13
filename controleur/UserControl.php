@@ -4,9 +4,6 @@ class UserControl {
 
 	function __construct() {
 		global $rep,$vues; // nécessaire pour utiliser variables globales
-		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-		session_start();
-
 
 		//debut
 
@@ -23,6 +20,10 @@ class UserControl {
 
                     $this->Articles();
 					break;
+
+                case 'connection':
+                	$this->Connection();
+                	break;
 
 				case "validationFormulaire":
 					$this->ValidationFormulaire($dVueEreur);
@@ -54,6 +55,11 @@ class UserControl {
 		exit(0);
 	}//fin constructeur
 
+
+	function Connection(){
+        global $rep, $vues;
+        require ($rep.$vues['connection']);
+	}
 
 	function Articles(){
 	    global $rep, $vues, $base, $login, $mdp;

@@ -27,6 +27,7 @@ $vues['vuephp1']='vues/vuephp1.php';
 $vues['userView']='vues/userView.php';
 $vues['adminView']='vues/adminView.php';
 $vues['formAjout']='vues/formulaireAjout.html';
+$vues['connection']='vues/formulaireConnection.html';
 
 
 ?>

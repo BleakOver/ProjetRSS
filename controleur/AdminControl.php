@@ -12,17 +12,20 @@ class AdminControl
     function __construct()
     {
         global $rep,$vues; // nécessaire pour utiliser variables globales
-		// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-		session_start();
-
 
 		//debut
 
 		//on initialise un tableau d'erreur
 		$dVueEreur = array ();
 
+		if(!ModelAdmin::isAdmin()){
+            $dVueEreur[] =	"Erreur inattendue!!! ";
+            $dVueEreur[] =	"Vous n'êtes pas Admin";
+            require ($rep.$vues['erreur']);
+            return;
+        }
 		try{
-			$action=$_GET['action'];
+			$action=$_REQUEST['action'];
 
 			switch($action) {
 
@@ -33,11 +36,6 @@ class AdminControl
                 case "flux":
                     $this->afficherFlux();
                     break;
-
-
-				case NULL:
-					new UserControl();
-					break;
 
                 case "delete":
                     $this->deleteFlux();
@@ -59,11 +57,11 @@ class AdminControl
 
 		}
 		catch (Exception $e2)
-			{
+        {
 			$dVueEreur[] =	"Erreur inattendue!!! ";
             $dVueEreur[] =	$e2->getMessage();
 			require ($rep.$vues['erreur']);
-			}
+        }
 
 
 		//fin
@@ -79,18 +77,18 @@ class AdminControl
             return;
         }
         Model::addFlux($urlAAJouter);
-        $_GET['action']="flux";
-        new AdminControl();
+        $_REQUEST['action']="flux";
+        new FrontControl();
     }
 
     function deleteFlux(){
         global $rep, $vues;
-        $urlFlux=$_GET['urlFlux'];
+        $urlFlux=$_REQUEST['urlFlux'];
         if(isset($urlFlux)){
             Model::delFlux($urlFlux);
         }
-        $_GET['action']="flux";
-        new AdminControl();
+        $_REQUEST['action']="flux";
+        new FrontControl();
     }
 
     function afficherFlux(){
