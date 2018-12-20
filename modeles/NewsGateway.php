@@ -26,6 +26,12 @@ class NewsGateway
         return $tableNews;
     }
 
+    public function getNbNews(){
+        $query='SELECT COUNT(*) FROM NEWS';
+        $this->con->executeQuery($query);
+        return $this->con->getResults()[0];
+    }
+
     public function findAtPage($page){
         global $nbParPage;
         $query='SELECT * FROM NEWS ORDER BY DATE ASC LIMIT :decal , :nbParPage ;';

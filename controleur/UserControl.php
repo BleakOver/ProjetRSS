@@ -70,9 +70,11 @@ class UserControl {
 
 	function Articles(){
 	    global $rep, $vues, $base, $login, $mdp;
+
         $page=$_REQUEST['page'];
-        if(!isset($page) || $page<=0){
+        if(!isset($page) || $page<=0 || $page>Model::getNbPagesNews()){
             $page=1;
+            $_REQUEST['page']=1;
         }
         $tabNews=Model::getNewsAtPage($page);
 		require ($rep.$vues['userView']);

@@ -13,7 +13,7 @@ class News
     private $date;
     private $title;
 
-    public function __construct($address, $title, $desc, $date)
+    public function __construct($address = "", $title = "", $desc = "", $date = "")
     {
         $this->address=$address;
         $this->desc=$desc;
@@ -35,5 +35,21 @@ class News
 
     public function getDate(){
         return $this->date;
+    }
+
+    public function setAddress($address){
+        $this->address = $address;
+    }
+
+    public function setDescription($desc){
+        $this->desc = $desc;
+    }
+
+    public function setTitle($date){
+        $this->title = $date;
+    }
+
+    public function setDate($title){
+        $this->date = $title;
     }
 }

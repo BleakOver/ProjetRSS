@@ -15,6 +15,20 @@ class Model
         return $news->findAtPage($page);
     }
 
+    public static function getNbPagesNews(){
+        global $base, $login, $mdp, $nbParPage;
+
+        $news=new NewsGateway(new Connection($base, $login, $mdp));
+        return (int)$news->getNbNews()/$nbParPage;
+    }
+
+    public static function addNews($newsAInserer){
+        global $base, $login, $mdp;
+
+        $news=new NewsGateway(new Connection($base, $login, $mdp));
+        $news->insert($newsAInserer);
+    }
+
     public static function addFlux($url){
         global $base, $login, $mdp;
 
@@ -27,7 +41,6 @@ class Model
 
         $fluxG=new FluxGateway(new Connection($base, $login, $mdp));
         $fluxG->delete($url);
-        //require ($rep."/index.php"); soit header (Location index.php);
     }
 
     public static function getFlux(){
