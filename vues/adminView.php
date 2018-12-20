@@ -17,6 +17,8 @@
 
 ?>
 
+<input type="button" id="disconnect" value="Déconnexion">
+
 <script>
     tabBouton=document.querySelectorAll(".sup");
     tabBouton.forEach(function (elem) {
@@ -30,6 +32,13 @@
     boutonRetour=document.querySelector("#retour");
     boutonRetour.addEventListener("click", function(){
         window.location='index.php';
+    });
+
+    boutonDeco=document.querySelector("#disconnect");
+    boutonDeco.addEventListener("click", function(){
+       if(confirm("Confirmer déconnexion ?")) {
+            window.location = 'index.php?action=disconnect';
+        } 
     });
 
 

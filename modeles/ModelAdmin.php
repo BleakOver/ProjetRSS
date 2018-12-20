@@ -14,10 +14,11 @@ class ModelAdmin
         $adminG=new AdminsGateway(new Connection($base, $login, $mdp));
         if($adminG->adminExists($loginAdmin, $password)){
             $_SESSION['role']='admin';
-            $_SESSION['login']=$login;
+            $_SESSION['login']=$loginAdmin;
+            return new Admin($loginAdmin);
         }
         else{
-            throw new Exception("Admin inconnu");
+            return null;
         }
     }
 
@@ -29,8 +30,12 @@ class ModelAdmin
 
     public static function isAdmin(){
         if(isset($_SESSION['login']) && isset($_SESSION['role'])){
-            return($_SESSION['role'] == 'admin');
+            $login=filter_var($_SESSION['login'], FILTER_SANITIZE_STRING);
+            $role=filter_var($_SESSION['role'], FILTER_SANITIZE_STRING);
+            if($role=='admin'){
+                return new Admin($login);
+            }
         }
-        return false;
+        return null;
     }
 }

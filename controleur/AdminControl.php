@@ -37,6 +37,10 @@ class AdminControl
                     $this->afficherFlux();
                     break;
 
+                case "disconnect":
+                    $this->disconnect();
+                    break;
+
                 case "delete":
                     $this->deleteFlux();
                     break;
@@ -88,6 +92,12 @@ class AdminControl
             Model::delFlux($urlFlux);
         }
         $_REQUEST['action']="flux";
+        new FrontControl();
+    }
+
+    function disconnect(){
+        ModelAdmin::deconnection();
+        $_REQUEST['action']=null;
         new FrontControl();
     }
 

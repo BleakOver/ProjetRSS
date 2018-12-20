@@ -9,17 +9,16 @@ class FrontControl
         session_start();
         $dVueErreur = array();
 
-        $listeAction_Admin = array('ajout', 'flux', 'delete');
+        $listeAction_Admin = array('ajout', 'flux', 'delete', 'disconnect');
 
         try {
             $action = $_REQUEST['action'];
 
             if (in_array($action, $listeAction_Admin)) {
-                if (ModelAdmin::isAdmin()) {
+                if (ModelAdmin::isAdmin()!=null) {
                     new AdminControl();
                 } else {
-                    $_REQUEST['action'] = 'connection';
-                    new UserControl();
+                    require ($rep.$vues['connection']);
                 }
             } else {
                 new UserControl();

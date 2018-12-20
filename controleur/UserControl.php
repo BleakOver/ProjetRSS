@@ -47,6 +47,7 @@ class UserControl {
 		catch (Exception $e2)
 			{
 			$dVueEreur[] =	"Erreur inattendue!!! ";
+			$dVueEreur[] =	$e2->getMessage();
 			require ($rep.$vues['erreur']);
 			}
 
@@ -57,8 +58,14 @@ class UserControl {
 
 
 	function Connection(){
-        global $rep, $vues;
-        require ($rep.$vues['connection']);
+		$loginAdmin=filter_var($_POST['loginAdmin'], FILTER_SANITIZE_STRING);
+		$password=filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+		if(ModelAdmin::connection($loginAdmin, $password)==null){
+			throw new Exception("Mauvais login");
+		}
+		$_REQUEST['action']=null;
+		new FrontControl();
+
 	}
 
 	function Articles(){
