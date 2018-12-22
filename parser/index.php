@@ -6,9 +6,9 @@ require_once(__DIR__ . '/AutoloadParser.php');
 AutoloadParser::charger();
 
 
-Model::delAllNews();
+ModelNews::delAllNews();
 
-$flux=Model::getFlux();
+$flux=ModelFlux::getFlux();
 
 foreach ($flux as $toParse) {
     $parser = new XmlParser($toParse->getUrl());

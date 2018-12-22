@@ -29,7 +29,7 @@ class NewsGateway
     public function getNbNews(){
         $query='SELECT COUNT(*) FROM NEWS';
         $this->con->executeQuery($query);
-        return $this->con->getResults()[0];
+        return $this->con->getResults()[0]['COUNT(*)'];
     }
 
     public function findAtPage($page){

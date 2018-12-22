@@ -12,6 +12,7 @@ class FrontControl
         $listeAction_Admin = array('ajout', 'flux', 'delete', 'disconnect');
 
         try {
+            $_REQUEST['action'] = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : null;
             $action = $_REQUEST['action'];
 
             if (in_array($action, $listeAction_Admin)) {

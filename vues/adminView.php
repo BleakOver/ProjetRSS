@@ -9,7 +9,7 @@
     echo '<input type="button" id="disconnect" value="Déconnexion"></div>';
     if(isset($tabFlux)) {
         foreach ($tabFlux as $flux) {
-            echo '<p><a href="index.php">' . $flux->getUrl() . '</a><input class="sup" type="button" value="Supprimer"></p></br>';
+            echo '<p><a href="' . $flux->getUrl() . '">' . $flux->getUrl() . '</a><input class="sup" type="button" value="Supprimer"></p></br>';
 
         }
     }

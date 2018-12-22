@@ -85,7 +85,7 @@ class XmlParser {
     {
         switch($name){
             case 'ITEM':
-                Model::addNews($this->news);
+                ModelNews::addNews($this->news);
                 break;
             case 'TITLE':
                 $this->btitle = false;

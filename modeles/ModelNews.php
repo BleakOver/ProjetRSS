@@ -6,7 +6,7 @@
  * Time: 09:46
  */
 
-class Model
+class ModelNews
 {
     public static function getNewsAtPage($page){
         global $base, $login, $mdp;
@@ -19,7 +19,7 @@ class Model
         global $base, $login, $mdp, $nbParPage;
 
         $news=new NewsGateway(new Connection($base, $login, $mdp));
-        return (int)$news->getNbNews()/$nbParPage;
+        return ceil($news->getNbNews()/$nbParPage);
     }
 
     public static function addNews($newsAInserer){
@@ -35,25 +35,4 @@ class Model
         $news->deleteAll();
     }
 
-    public static function addFlux($url){
-        global $base, $login, $mdp;
-
-        $fluxG=new FluxGateway(new Connection($base, $login, $mdp));
-        $fluxG->insert(new Flux($url));
-    }
-
-    public static function delFlux($url){
-        global $base, $login, $mdp;
-
-        $fluxG=new FluxGateway(new Connection($base, $login, $mdp));
-        $fluxG->delete($url);
-    }
-
-
-    public static function getFlux(){
-        global $base, $login, $mdp;
-
-        $fluxG=new FluxGateway(new Connection($base, $login, $mdp));
-        return $fluxG->findAll();
-    }
 }

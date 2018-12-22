@@ -80,7 +80,7 @@ class AdminControl
             require ($rep.$vues['erreur']);
             return;
         }
-        Model::addFlux($urlAAJouter);
+        ModelFlux::addFlux($urlAAJouter);
         $_REQUEST['action']="flux";
         new FrontControl();
     }
@@ -89,7 +89,7 @@ class AdminControl
         global $rep, $vues;
         $urlFlux=$_REQUEST['urlFlux'];
         if(isset($urlFlux)){
-            Model::delFlux($urlFlux);
+            ModelFlux::delFlux($urlFlux);
         }
         $_REQUEST['action']="flux";
         new FrontControl();
@@ -104,7 +104,7 @@ class AdminControl
     function afficherFlux(){
         global $rep, $vues;
 
-		$tabFlux=Model::getFlux();
+		$tabFlux=ModelFlux::getFlux();
 		require ($rep.$vues['adminView']);
     }
 
