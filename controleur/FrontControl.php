@@ -6,10 +6,12 @@ class FrontControl
     {
         global $rep, $vues; // nécessaire pour utiliser variables globales
         // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $dVueErreur = array();
 
-        $listeAction_Admin = array('ajout', 'flux', 'delete', 'disconnect');
+        $listeAction_Admin = array('ajout', 'flux', 'delete', 'disconnect', 'parse');
 
         try {
             $_REQUEST['action'] = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : null;

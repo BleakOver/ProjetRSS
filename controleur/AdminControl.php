@@ -41,6 +41,10 @@ class AdminControl
                     $this->disconnect();
                     break;
 
+                case "parse":
+                    $this->parse();
+                    break;
+
                 case "delete":
                     $this->deleteFlux();
                     break;
@@ -99,6 +103,10 @@ class AdminControl
         ModelAdmin::deconnection();
         $_REQUEST['action']=null;
         new FrontControl();
+    }
+
+    function parse(){
+
     }
 
     function afficherFlux(){

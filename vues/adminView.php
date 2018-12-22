@@ -5,8 +5,9 @@
 </head>
 <body>
 <?php
-    echo '<div><input id="retour" type="button" value="retourner aux news">';
-    echo '<input type="button" id="disconnect" value="Déconnexion"></div>';
+    echo '<div><input id="retour" type="button" value="Retourner aux news">';
+    echo '<input type="button" id="disconnect" value="Déconnexion">';
+    echo '<input type="button" id="parser" value="Parser"></div>';
     if(isset($tabFlux)) {
         foreach ($tabFlux as $flux) {
             echo '<p><a href="' . $flux->getUrl() . '">' . $flux->getUrl() . '</a><input class="sup" type="button" value="Supprimer"></p></br>';
@@ -37,7 +38,14 @@
     boutonDeco.addEventListener("click", function(){
        if(confirm("Confirmer déconnexion ?")) {
             window.location = 'index.php?action=disconnect';
-        } 
+        }
+    });
+
+    boutonParse=document.querySelector("#parser");
+    boutonParse.addEventListener("click", function(){
+        if(confirm("Parser ?")) {
+            window.location = 'parser';
+        }
     });
 
 

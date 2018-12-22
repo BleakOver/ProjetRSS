@@ -15,3 +15,7 @@ foreach ($flux as $toParse) {
     $parser->parse();
 }
 ?>
+
+<script>
+    window.location= '../index.php?action=flux';
+</script>

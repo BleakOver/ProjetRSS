@@ -18,7 +18,7 @@ $mdp="enmora";
 
 //Articles
 
-$nbParPage=10;
+$nbParPage=5;
 
 //Vues
 
