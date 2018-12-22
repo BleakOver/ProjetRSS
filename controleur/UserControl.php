@@ -72,11 +72,11 @@ class UserControl {
 	    global $rep, $vues, $base, $login, $mdp;
 
         $page = (isset($_REQUEST['page'])) ? $_REQUEST['page'] : 1;
-        if($page<=0){
-            $page=1;
-        }
-        elseif ($page>ModelNews::getNbPagesNews()){
+        if ($page>ModelNews::getNbPagesNews()){
         	$page=ModelNews::getNbPagesNews();
+		}
+        if($page<=0){
+			$page=1;
 		}
         $tabNews=ModelNews::getNewsAtPage($page);
 		require ($rep.$vues['userView']);

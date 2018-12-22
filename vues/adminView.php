@@ -6,8 +6,8 @@
 <body>
 <?php
     echo '<div><input id="retour" type="button" value="Retourner aux news">';
-    echo '<input type="button" id="disconnect" value="Déconnexion">';
-    echo '<input type="button" id="parser" value="Parser"></div>';
+    echo '<input type="button" id="parser" value="Parser">';
+    echo '<input type="button" id="disconnect" value="Déconnexion"></div>';
     if(isset($tabFlux)) {
         foreach ($tabFlux as $flux) {
             echo '<p><a href="' . $flux->getUrl() . '">' . $flux->getUrl() . '</a><input class="sup" type="button" value="Supprimer"></p></br>';
