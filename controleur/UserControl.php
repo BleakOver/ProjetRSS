@@ -61,7 +61,7 @@ class UserControl {
 		$loginAdmin=filter_var($_POST['loginAdmin'], FILTER_SANITIZE_STRING);
 		$password=filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 		if(ModelAdmin::connection($loginAdmin, $password)==null){
-			throw new Exception("Mauvais login");
+			echo '<script>alert("Erreur de connexion");</script>';
 		}
 		$_REQUEST['action']=null;
 		new FrontControl();

@@ -28,6 +28,12 @@ class Model
         $news=new NewsGateway(new Connection($base, $login, $mdp));
         $news->insert($newsAInserer);
     }
+    public static function delAllNews(){
+        global $base, $login, $mdp;
+
+        $news=new NewsGateway(new Connection($base, $login, $mdp));
+        $news->deleteAll();
+    }
 
     public static function addFlux($url){
         global $base, $login, $mdp;
@@ -42,6 +48,7 @@ class Model
         $fluxG=new FluxGateway(new Connection($base, $login, $mdp));
         $fluxG->delete($url);
     }
+
 
     public static function getFlux(){
         global $base, $login, $mdp;

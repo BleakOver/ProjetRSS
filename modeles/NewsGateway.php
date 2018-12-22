@@ -34,7 +34,7 @@ class NewsGateway
 
     public function findAtPage($page){
         global $nbParPage;
-        $query='SELECT * FROM NEWS ORDER BY DATE ASC LIMIT :decal , :nbParPage ;';
+        $query='SELECT * FROM NEWS ORDER BY DATE DESC LIMIT :decal , :nbParPage ;';
         $this->con->executeQuery($query, array(
             ':decal' => array(($page-1)*$nbParPage, PDO::PARAM_INT),
             ':nbParPage' => array($nbParPage, PDO::PARAM_INT)
@@ -60,12 +60,12 @@ class NewsGateway
     }
 
     public function insert(News $news){
-        $query='INSERT INTO NEWS VALUES(:address,:title, :des, :dte)';
+        $query='INSERT INTO NEWS VALUES(:address, :title, :des, :dte)';
         $this->con->executeQuery($query, array(
-            ':address' => array($news->getAddress(), PDO::PARAM_STR),
-            ':title' => array($news->getTitle(), PDO::PARAM_STR),
-            ':des' => array($news->getDescription(), PDO::PARAM_STR),
-            ':dte' => array($news->getDate(), PDO::PARAM_STR))
+                ':address' => array($news->getAddress(), PDO::PARAM_STR),
+                ':title' => array($news->getTitle(), PDO::PARAM_STR),
+                ':des' => array($news->getDescription(), PDO::PARAM_STR),
+                ':dte' => array(date_create_from_format(DateTime::RSS, $news->getDate())->format('Y-m-d H:i:s'), PDO::PARAM_STR))
         );
     }
 
@@ -75,6 +75,11 @@ class NewsGateway
             ':address' => array($address, PDO::PARAM_STR)
             )
         );
+    }
+
+    public function deleteAll(){
+        $query='DELETE FROM NEWS';
+        $this->con->executeQuery($query);
     }
 
     public function update($address, $newDescription){

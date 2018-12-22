@@ -5,7 +5,8 @@
 </head>
 <body>
 <?php
-    echo '<div><input id="retour" type="button" value="retourner aux news"></div>';
+    echo '<div><input id="retour" type="button" value="retourner aux news">';
+    echo '<input type="button" id="disconnect" value="Déconnexion"></div>';
     if(isset($tabFlux)) {
         foreach ($tabFlux as $flux) {
             echo '<p><a href="index.php">' . $flux->getUrl() . '</a><input class="sup" type="button" value="Supprimer"></p></br>';
@@ -16,8 +17,6 @@
     require ($rep.$vues['formAjout']);
 
 ?>
-
-<input type="button" id="disconnect" value="Déconnexion">
 
 <script>
     tabBouton=document.querySelectorAll(".sup");

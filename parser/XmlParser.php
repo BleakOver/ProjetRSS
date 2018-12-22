@@ -1,5 +1,6 @@
 <?php
- 
+
+
 /**
  * Classe parsant un fichier xml et affichant les informations sous la forme
  * d'une hierarchie de texte
@@ -22,6 +23,7 @@ class XmlParser {
         $this -> blink = false;
         $this -> bdesc = false;
         $this -> bdate = false;
+        $this -> news = new News();
     }
      
     public function getResult() {
@@ -39,7 +41,7 @@ class XmlParser {
         xml_set_element_handler($xml_parser, "startElement", "endElement");
         xml_set_character_data_handler($xml_parser, 'characterData');
         if (!($fp = fopen($this -> path, "r"))) {
-            die("could not open XML input");
+            return;
         }
  
         while ($data = fread($fp, 4096)) {
@@ -58,54 +60,43 @@ class XmlParser {
      
     private function startElement($parser, $name, $attrs)
     {
-        var_dump($name);
         switch($name){
-            case 'item':
+            case 'ITEM':
                 $this->news = new News();
                 break;
-            case 'title':
+            case 'TITLE':
                 $this->btitle = true;
                 break;
-            case 'link':
+            case 'LINK':
                 $this->blink = true;
                 break;
-            case 'description':
+            case 'DESCRIPTION':
                 $this->bdesc = true;
                 break;
-            case 'pubDate':
+            case 'PUBDATE':
                 $this->bdate = true;
                 break;
-                default :
-                    echo $name;
 
         }
     }
-     
-    private function displayAttribute($attribute, $text)
-    {
-        for ($i = 0; $i < $this -> depth; $i++) {
-            echo "  ";
-        }
-         
-        echo "A - $attribute = $text\n";
-    }
+
  
     private function endElement($parser, $name)
     {
         switch($name){
-            case 'item':
+            case 'ITEM':
                 Model::addNews($this->news);
                 break;
-            case 'title':
+            case 'TITLE':
                 $this->btitle = false;
                 break;
-            case 'link':
+            case 'LINK':
                 $this->blink = false;
                 break;
-            case 'description':
+            case 'DESCRIPTION':
                 $this->bdesc = false;
                 break;
-            case 'pubDate':
+            case 'PUBDATE':
                 $this->bdate = false;
                 break;
 
@@ -116,7 +107,7 @@ class XmlParser {
     private function characterData($parser, $data)
     {
         $data = trim($data);
-         
+
         if (strlen($data) > 0)
         {
             if($this->btitle){

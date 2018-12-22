@@ -5,15 +5,17 @@
 </head>
 <body>
 <?php
-    echo '<div><input id="flux" type="button" value="gérer les flux"></div>';
+    if(ModelAdmin::isAdmin()) {
+        echo '<div><input id="flux" type="button" value="Gérer les flux">';
+        echo '<input type="button" id="disconnect" value="Déconnexion"></div>';
+    }
+    else{
+        echo '<div><input id="flux" type="button" value="Connexion"></div>';
+    }
     if(isset($tabNews)) {
         foreach ($tabNews as $new) {
-            echo '<div><h2>' . $new->getTitle() . '</h2><p>' . $new->getDescription() . '</p><a href="index.php">' . $new->getAddress() . '</a></div></br>';
+            echo '<div><h2>' . $new->getTitle() . '</h2><p>' . $new->getDate() . '</p><p>' . $new->getDescription() . '</p><a href="'.$new->getAddress().'">La suite ici !</a></div></br>';
         }
-    }
-
-    if(ModelAdmin::isAdmin()){
-        echo '<input type="button" id="disconnect" value="Déconnexion">';
     }
 ?>
 
