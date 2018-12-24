@@ -28,6 +28,6 @@ $vues['userView']='vues/userView.php';
 $vues['adminView']='vues/adminView.php';
 $vues['formAjout']='vues/formulaireAjout.html';
 $vues['connection']='vues/formulaireConnection.html';
-
+$vues['ajoutAdmin']='vues/formulaireAjoutAdmin.html';
 
 ?>

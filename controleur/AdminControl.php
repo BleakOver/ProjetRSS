@@ -41,8 +41,8 @@ class AdminControl
                     $this->disconnect();
                     break;
 
-                case "parse":
-                    $this->parse();
+                case "ajoutAdmin":
+                    $this->ajouterAdmin();
                     break;
 
                 case "delete":
@@ -99,14 +99,21 @@ class AdminControl
         new FrontControl();
     }
 
+    function ajouterAdmin(){
+        global $rep, $vues;
+        if(!isset($_POST['loginAdmin']) || !isset($_POST['passwordAdmin'])) {
+            require($rep . $vues['ajoutAdmin']);
+            return;
+        }
+        ModelAdmin::ajouterAdmin(filter_var($_POST['loginAdmin'], FILTER_SANITIZE_STRING), filter_var($_POST['passwordAdmin'], FILTER_SANITIZE_STRING));
+        $_REQUEST['action']="flux";
+        new FrontControl();
+    }
+
     function disconnect(){
         ModelAdmin::deconnection();
         $_REQUEST['action']=null;
         new FrontControl();
-    }
-
-    function parse(){
-
     }
 
     function afficherFlux(){

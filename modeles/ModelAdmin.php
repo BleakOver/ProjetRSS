@@ -28,6 +28,13 @@ class ModelAdmin
         $_SESSION=array();
     }
 
+    public static function ajouterAdmin($loginAdmin, $mdpAdmin){
+        global $base, $login, $mdp;
+
+        $adminG = new AdminsGateway(new Connection($base, $login, $mdp));
+        $adminG->addAdmin($loginAdmin, $mdpAdmin);
+    }
+
     public static function isAdmin(){
         if(isset($_SESSION['login']) && isset($_SESSION['role'])){
             $login=filter_var($_SESSION['login'], FILTER_SANITIZE_STRING);

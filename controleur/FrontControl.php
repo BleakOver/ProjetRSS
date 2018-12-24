@@ -11,7 +11,7 @@ class FrontControl
         }
         $dVueErreur = array();
 
-        $listeAction_Admin = array('ajout', 'flux', 'delete', 'disconnect', 'parse');
+        $listeAction_Admin = array('ajout', 'flux', 'delete', 'disconnect', 'ajoutAdmin');
 
         try {
             $_REQUEST['action'] = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : null;

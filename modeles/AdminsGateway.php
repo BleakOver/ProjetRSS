@@ -27,4 +27,13 @@ class AdminsGateway
         }
         return null;
     }
+
+    public function addAdmin($login, $mdp){
+        $query='INSERT INTO ADMINS VALUES (:login, :passwd)';
+        $this->con->executeQuery($query, array(
+            ':login' => array ($login, PDO::PARAM_STR),
+            ':passwd' => array(password_hash($mdp, PASSWORD_DEFAULT), PDO::PARAM_STR)
+            )
+        );
+    }
 }

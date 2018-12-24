@@ -7,6 +7,7 @@
 <?php
     echo '<div><input id="retour" type="button" value="Retourner aux news">';
     echo '<input type="button" id="parser" value="Parser">';
+    echo '<input type="button" id="ajoutAdmin" value="Ajouter un administrateur">';
     echo '<input type="button" id="disconnect" value="Déconnexion"></div>';
     if(isset($tabFlux)) {
         foreach ($tabFlux as $flux) {
@@ -39,6 +40,11 @@
        if(confirm("Confirmer déconnexion ?")) {
             window.location = 'index.php?action=disconnect';
         }
+    });
+
+    boutonAdmin=document.querySelector("#ajoutAdmin");
+    boutonAdmin.addEventListener("click", function(){
+        window.location = 'index.php?action=ajoutAdmin';
     });
 
     boutonParse=document.querySelector("#parser");
