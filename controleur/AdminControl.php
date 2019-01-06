@@ -24,6 +24,7 @@ class AdminControl
             require ($rep.$vues['erreur']);
             return;
         }
+
 		try{
 			$action=$_REQUEST['action'];
 
@@ -56,7 +57,7 @@ class AdminControl
 					break;
 			}
 
-		} catch (PDOException $e)
+		} catch (PDOException $e) // Pourquoi
 		{
 			//si erreur BD, pas le cas ici
 			$dVueEreur[] =	"Erreur inattendue PDO!!! ";
@@ -64,7 +65,7 @@ class AdminControl
 			require ($rep.$vues['erreur']);
 
 		}
-		catch (Exception $e2)
+		catch (Exception $e2) // Pourquoi
         {
 			$dVueEreur[] =	"Erreur inattendue!!! ";
             $dVueEreur[] =	$e2->getMessage();

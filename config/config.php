@@ -13,7 +13,7 @@ $rep=__DIR__.'/../';
 
 $base="mysql:host=localhost:3306;dbname=dbenmora";
 $login="root";
-$mdp="enmora";
+$mdp="";
 
 
 //Articles

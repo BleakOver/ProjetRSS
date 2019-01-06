@@ -64,7 +64,7 @@ class UserControl {
 			echo '<script>alert("Erreur de connexion");</script>';
 		}
 		$_REQUEST['action']=null;
-		new FrontControl();
+		new FrontControl(); // Pourquoi
 
 	}
 
